@@ -38,29 +38,42 @@
   window.addEventListener("resize", updateScrollState, { passive: true });
   updateScrollState();
 
-  const hero = document.querySelector(".hero");
-  const heroMedia = document.querySelector("[data-parallax-media]");
-  const desktopMotion = window.matchMedia("(min-width: 1081px)").matches;
-  if (!reduceMotion && desktopMotion && hero && heroMedia) {
-    let frame = 0;
-    let pointerX = 0;
-    let pointerY = 0;
-    const updateParallax = () => {
-      frame = 0;
-      heroMedia.style.setProperty("--parallax-x", `${pointerX}px`);
-      heroMedia.style.setProperty("--parallax-y", `${pointerY}px`);
+  const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
+  const pointerParallax = document.querySelector("[data-parallax-pointer]");
+  if (!reduceMotion && parallaxItems.length) {
+    let parallaxFrame = 0;
+    const renderParallax = () => {
+      parallaxFrame = 0;
+      const viewportHeight = window.innerHeight;
+      parallaxItems.forEach((item) => {
+        const bounds = item.getBoundingClientRect();
+        if (bounds.bottom < -200 || bounds.top > viewportHeight + 200) return;
+        const speed = Number(item.dataset.parallaxSpeed || .1);
+        const distanceFromCenter = bounds.top + bounds.height / 2 - viewportHeight / 2;
+        const range = (viewportHeight + bounds.height) / 2;
+        const progress = Math.max(-1, Math.min(1, distanceFromCenter / range));
+        item.style.setProperty("--scroll-parallax", `${progress * viewportHeight * speed * -.48}px`);
+      });
     };
-    hero.addEventListener("pointermove", (event) => {
-      const bounds = hero.getBoundingClientRect();
-      pointerX = ((event.clientX - bounds.left) / bounds.width - .5) * -10;
-      pointerY = ((event.clientY - bounds.top) / bounds.height - .5) * -7;
-      if (!frame) frame = window.requestAnimationFrame(updateParallax);
-    });
-    hero.addEventListener("pointerleave", () => {
-      pointerX = 0;
-      pointerY = 0;
-      if (!frame) frame = window.requestAnimationFrame(updateParallax);
-    });
+    const requestParallax = () => {
+      if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(renderParallax);
+    };
+    window.addEventListener("scroll", requestParallax, { passive: true });
+    window.addEventListener("resize", requestParallax, { passive: true });
+    renderParallax();
+
+    if (pointerParallax && window.matchMedia("(min-width: 1081px)").matches) {
+      const hero = pointerParallax.closest(".hero");
+      hero?.addEventListener("pointermove", (event) => {
+        const bounds = hero.getBoundingClientRect();
+        pointerParallax.style.setProperty("--pointer-x", `${((event.clientX - bounds.left) / bounds.width - .5) * -22}px`);
+        pointerParallax.style.setProperty("--pointer-y", `${((event.clientY - bounds.top) / bounds.height - .5) * -15}px`);
+      });
+      hero?.addEventListener("pointerleave", () => {
+        pointerParallax.style.setProperty("--pointer-x", "0px");
+        pointerParallax.style.setProperty("--pointer-y", "0px");
+      });
+    }
   }
 
   const revealItems = document.querySelectorAll(".reveal");

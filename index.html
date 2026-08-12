@@ -52,10 +52,11 @@
 
     <main id="conteudo">
       <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <div class="hero-media media-frame" data-parallax-media>
+        <div class="hero-media media-frame" data-parallax data-parallax-speed="0.16" data-parallax-pointer>
           <img src="assets/photos/hero-1920.webp" alt="Visitantes entre os estandes da ArPa" fetchpriority="high" decoding="async" />
           <div class="media-credit">ArPa 2026 <span>Mercado Livre Arena Pacaembu, São Paulo</span></div>
         </div>
+        <div class="hero-rail" aria-hidden="true"><span>arte</span><i></i><span>cultura</span><i></i><span>design</span></div>
         <div class="hero-copy">
           <div class="hero-copy-inner reveal">
             <span class="hero-kicker">ArPa 2027 <i></i> parcerias</span>
@@ -80,9 +81,10 @@
             <p class="lead-copy">Após cinco edições bem-sucedidas, a ArPa se consolida como uma feira de arte com uma proposta única.</p>
             <p>Realizada na Mercado Livre Arena Pacaembu, a ArPa expande a comunidade artística a partir de uma experiência acolhedora, com curadoria, circulação qualificada e espaço para trocas genuínas.</p>
           </div>
-          <div class="project-principles reveal">
+          <div class="project-principles reveal" data-parallax data-parallax-speed="0.11">
+            <img class="project-principles__media" src="assets/photos/experience-1920.webp" alt="Visitantes observam uma obra na ArPa" loading="lazy" data-parallax-image />
             <div class="project-principles__content">
-              <span class="project-principles__label">Princípios da ArPa</span>
+              <span class="project-principles__label"><i>01 — 05</i> Princípios da ArPa</span>
               <ul class="word-list" aria-label="Princípios da ArPa">
                 <li>Arte</li>
                 <li>Cultura</li>
@@ -95,7 +97,8 @@
         </div>
       </section>
 
-      <section class="audience-section section-shell" id="audiencia" aria-labelledby="audiencia-title">
+      <section class="audience-section" id="audiencia" aria-labelledby="audiencia-title">
+        <div class="audience-inner section-shell">
         <div class="audience-heading reveal">
           <div class="section-heading">
             <span class="section-index">02 / Público</span>
@@ -116,6 +119,7 @@
             <li class="reveal"><span>05</span><strong>Instituições e novas audiências</strong><small>Formação, mediação e diálogo público.</small></li>
           </ul>
         </div>
+        </div>
       </section>
 
       <section class="quotas-section section-shell" id="cotas" aria-labelledby="cotas-title">
@@ -132,7 +136,7 @@
 
           <div class="quota-stage">
             <div class="quota-cards" data-quota-track>
-              <article class="quota-card quota-card--presence reveal" data-quota="presence">
+              <article class="quota-card quota-card--presence reveal" data-quota="essencial">
                 <div class="quota-card__top"><span>01</span><span>base</span></div>
                 <h3>Essencial</h3>
                 <p class="quota-price">R$ 95.000</p>
@@ -206,7 +210,7 @@
             <article class="format-item reveal"><span>03 /</span><h3>Experiência</h3><p>Ativações e ambientes que ampliam a relação da marca com a jornada do público.</p></article>
             <article class="format-item reveal"><span>04 /</span><h3>Relacionamento</h3><p>Encontros qualificados e conexões que se transformam em futuro.</p></article>
           </div>
-          <figure class="formats-image image-frame reveal">
+          <figure class="formats-image image-frame reveal" data-parallax data-parallax-speed="0.13">
             <img src="assets/photos/editorial-1920.webp" alt="Estandes e visitantes na ArPa" loading="lazy" />
             <figcaption>Do encontro na feira ao desdobramento de longo prazo.</figcaption>
           </figure>
@@ -254,13 +258,19 @@
             <li class="journey-step reveal"><span>03 /</span><h3>Ativar</h3><p>Colocamos a ideia em prática com excelência e atenção a cada detalhe.</p></li>
             <li class="journey-step reveal"><span>04 /</span><h3>Desdobrar</h3><p>Prolongamos a parceria em conteúdos, encontros e novas experiências.</p></li>
           </ol>
-          <div class="journey-after" aria-label="Continuidade da parceria"><span>na feira</span><i></i><span>programação paralela</span><i></i><span>pós-feira</span></div>
+          <div class="journey-after" aria-label="Continuidade da parceria">
+            <span><small>01 / encontro</small><strong>na feira</strong></span>
+            <i aria-hidden="true">→</i>
+            <span><small>02 / extensão</small><strong>programação paralela</strong></span>
+            <i aria-hidden="true">→</i>
+            <span><small>03 / continuidade</small><strong>pós-feira</strong></span>
+          </div>
           <p class="commercial-note">* Os valores comerciais apresentados são demonstrativos e podem ser ajustados de acordo com os formatos e entregas definidos em conjunto.</p>
         </div>
       </section>
 
       <section class="conversation-section" id="conversar" aria-labelledby="conversar-title">
-        <div class="conversation-media media-frame">
+        <div class="conversation-media media-frame" data-parallax data-parallax-speed="0.1">
           <img src="assets/photos/conversation-1920.webp" alt="Público em conversa durante a ArPa" loading="lazy" />
           <div class="media-credit">ArPa 2026 <span>Foto: arquivo ArPa</span></div>
         </div>
