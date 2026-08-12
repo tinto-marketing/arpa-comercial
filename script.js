@@ -90,6 +90,22 @@
     revealItems.forEach((item) => revealObserver.observe(item));
   }
 
+  const journeyBanner = document.querySelector("[data-journey-banner]");
+  if (journeyBanner) {
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      journeyBanner.classList.add("is-active");
+    } else {
+      const journeyObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-active");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.28, rootMargin: "0px 0px -6%" });
+      journeyObserver.observe(journeyBanner);
+    }
+  }
+
   const sections = [...document.querySelectorAll("main section[id]")];
   const navLinks = [...document.querySelectorAll(".site-nav a")];
   if ("IntersectionObserver" in window) {
